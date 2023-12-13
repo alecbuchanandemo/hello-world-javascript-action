@@ -3,6 +3,9 @@ const { execSync } = require('child_process');
 
 async function main() {
   try {
+    // Install dstat
+    execSync('sudo apt-get update && sudo apt-get install -y dstat', { stdio: 'inherit' });
+
     const dstatOutput = execSync('dstat --nocolor --noupdate --output dstat.csv 1 1', { encoding: 'utf8' });
     const lines = dstatOutput.split('\n');
     const stats = lines[lines.length - 2].split(',');
